@@ -1,0 +1,68 @@
+# ISAT 251 Lab 1 Categorical Data
+myfile <- file.choose()
+myfile
+
+mms.data <- read.csv(myfile, header = T)
+head(mms.data)
+summary(mms.data)
+
+# create freq. table for color
+table(mms.data$color)
+table(mms.data$defect)
+my.table.color <- table(mms.data$color)
+my.table.defect <- table(mms.data$defect)
+# create relative freq. table for color
+prop.table(table(mms.data$color))
+prop.table(table(mms.data$defect))
+round(prop.table(table(mms.data$defect)),2)
+round(prop.table(table(mms.data$color)),2)
+prop.table(my.table.color)
+pror.table(my.table.defect)
+
+# percent
+my.table.percents <- round(prop.table(my.table.color)*100, 2)
+
+# create a bar plot for color
+mms.color <- c("blue", "brown", "green", "orange", "red", "yellow")
+mms.color
+barplot(my.table.color, main ="Distribution of M&M's color", xlab = "Color", ylab = "The number of M&M's", col = mms.color)
+
+# create a bar plot for defects
+mms.color1 <- c("grey", "black")
+mms.color1
+barplot(my.table.defect, main ="Distribution of M&M's defects", xlab = "Defect", ylab = "The number of M&M's", col = mms.color1)
+# create a pic chart for defect
+pie(my.table.defect, main = "Distribution of M&M's defect", col = mms.color1)
+# create a pie chart for color
+pie(my.table.color, main ="Distribution of M&M's color", col = mms.color)
+
+#percent
+my.table.percents <- round(prop.table(my.table.color)*100, 2)
+my.table.percents
+my.table.percents2 <- round(prop.table(my.table.defect)*100, 2)
+my.table.percents <- round(my.table.color/sum(my.table.color)*100, 2) 
+my.table.percents
+my.table.percents2 <- round(my.table.defect/sum(my.table.defect)*100, 2)
+my.table.percents2
+
+my.table.labels <- paste(names(my.table.color)," ", my.table.percents,"%", sep = "")
+my.table.labels
+my.table.labels1 <- paste(names(my.table.defect)," ", my.table.percents2,"%", sep = "")
+my.table.labels1
+pie(my.table.color, main ="Distribution of M&M's color", col = mms.color, labels = my.table.labels)
+pie(my.table.defect, main = "Distribution of M&M's defect", col = mms.color1, labels = my.table.labels1)
+
+#create contigency table
+install.packages("gmodels")
+library(gmodels)
+
+CrossTable(mms.data$color, mms.data$defect)
+
+#create segmented bar plot
+table.color.defect <- table(mms.data$color, mms.data$defect)
+table.color.defect
+barplot(table.color.defect, main ="Distribution of M&M's Color and Defect", xlab = "Defect", ylab = "The number of M&M's", col = mms.color)
+CrossTable(mms.data$color,mms.data$defect,prop.r = TRUE, prop.c = TRUE,prop.chisq = FALSE)
+summary(mms.data)
+fivenum()
+

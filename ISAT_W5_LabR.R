@@ -1,0 +1,62 @@
+# ISAT Week 6 Lab
+# The Normal Distribution
+
+#PDF - dnorm function: return the probability of an observation as a certain given value of x
+dnorm(x= 0, mean =0, sd =1.5)
+dnorm(0, 0, 1.5)
+dnorm(x= 3.41, mean = 2.9, sd = 0.31)
+dnorm(x= -1.5, mean = 0, sd = 1.5)
+dnorm(x= 2.5, mean = 1, sd = 1.5)
+dnorm(x= -2.5, mean = 1, sd = 1.5)
+
+# CDF - pnorm function: return the area, the cumulative probability of all the observations, below or above a given value q
+pnorm(q= 0, mean = 0, sd =1.5)
+pnorm(q= -1.5, mean = 0, sd =1.5)
+pnorm(q= -1.5, mean = 0, sd =1.5, lower.tail = F)
+pnorm(q= 3.41, mean = 2.9, sd =0.31)
+pnorm(q= 3.41, mean = 2.9, sd =0.31, lower.tail = F)
+
+# How to find the probability of all observations two given values q1 and q2
+pnorm(q= 1.5, mean =0, sd =1.5) - pnorm(q= -1.5, mean =0, sd =1.5)
+pnorm(q= 3, mean =0, sd =1.5) - pnorm(q= -3, mean =0, sd =1.5)
+pnorm(q= 1.5*3, mean =0, sd =1.5) - pnorm(q= -1.5*3, mean =0, sd =1.5)
+pnorm(q= 5, mean =0, sd =1.5) - pnorm(q= 4, mean =0, sd =1.5)
+
+# Inverse CDF - qnorm function: return the value q below or above which the area equals to p
+qnorm(p =0.5, mean = 0, sd =1.5)
+qnorm(p =0.95, mean = 2.9, sd =0.31)
+qnorm(p =0.99, mean = 2.9, sd =0.31)
+qnorm(p =1-0.99, mean = 2.9, sd =0.31)
+qnorm(p =0.99, mean = 2.9, sd =0.31, lower.tail = F)
+
+
+# Check normality of data
+# Example 1 using a simulated data
+# generate random data from a normal distribution
+rds1 <- rnorm(5000, mean = 10, sd =1.5)
+summary(rds1)
+sd(rds1)
+
+# split cavnas into two columns
+par(mfrow=c(1,2))
+hist(rds1, main="Histogram of 5000 random samples from a norm distribution", xlab= "Sample value", ylab = "Probability", freq = F)
+
+# create qqplot
+qqnorm(rds1)
+qqline(rds1, col = 'red', lwd =2)
+
+# Example 2 - built-in data "airquality"
+help("airquality")
+data("airquality")
+summary(airquality)
+
+# Check the normality
+par(mfrow=c(1,2))
+
+#
+hist(airquality$Ozone, main = "PDF of Ozone in NY May to Sept 1973", xlab = "Ozone level (ppb)", ylab = "Probability")
+
+# create qqplot
+qqnorm(airquality$Ozone)
+qqline(airquality$Ozone, col = 'red', lwd =2)
+
