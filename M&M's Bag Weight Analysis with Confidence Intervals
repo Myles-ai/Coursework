@@ -1,4 +1,4 @@
-# ISAT Lab Exercise 4
+# M&M's Bag Weight Analysis with Confidence Intervals
 
 myfile <-  file.choose()
 myfile
