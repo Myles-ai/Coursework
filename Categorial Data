@@ -1,4 +1,4 @@
-# ISAT 251 Lab 1 Categorical Data
+# Categorical Data
 myfile <- file.choose()
 myfile
 
