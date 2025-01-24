@@ -1,4 +1,5 @@
 # Categorical Data
+
 myfile <- file.choose()
 myfile
 
